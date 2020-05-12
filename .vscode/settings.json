@@ -1,0 +1,84 @@
+{
+  "cSpell.allowCompoundWords": true,
+  "cSpell.language": "en, en-gb, fr",
+  "cSpell.maxNumberOfProblems": 1000,
+  "files.associations": {
+    "latexmkrc": "perl"
+  },
+  // "latex-workshop.latex.external.build.command": "latexmk",
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "latexmk",
+      "tools": [
+        "latexmk"
+      ]
+    },
+    {
+      "name": "latexmk clean",
+      "tools": [
+        "latexmk clean"
+      ]
+    },
+    {
+      "name": "latexmk clean all",
+      "tools": [
+        "latexmk clean all"
+      ]
+    },
+  ],
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk",
+      "command": "latexmk",
+    },
+    {
+      "name": "latexmk clean",
+      "command": "latexmk",
+      "args": [
+        "-c"
+      ],
+      "env": {}
+    },
+    {
+      "name": "latexmk clean all",
+      "command": "latexmk",
+      "args": [
+        "-C"
+      ],
+      "env": {}
+    }
+  ],
+  "ltex.commands.ignore": [
+    "\\Language{}",
+    "\\PassOptionsToPackage{}{}",
+    "\\setmainfont[]{}",
+    "\\babeltags{}",
+    "\\DeclareDatamodelFields[]{}",
+    "\\DeclareDatamodelEntryfields{}",
+    "\\DeclareDatamodelEntryfields[]{}",
+    "\\colorlet{}{}",
+    "\\lstset{}",
+    "\\lstdefinelanguage{}{}",
+    "\\crefrangeformat{}{}",
+    "\\Crefrangeformat{}{}",
+    "\\loadglsentries{}",
+    "\\texorpdfstring{}{}",
+    "\\shorttoc{}{}",
+    "\\printbibheading[]{}",
+    "\\defbibfilter{}{}",
+  ],
+  "ltex.commands.dummy": [
+    "\\cpageref{}",
+  ],
+  "ltex.configurationTarget": {
+    "addToDictionary": "workspaceFolder",
+    "disableRule": "workspaceFolder",
+    "ignoreRuleInSentence": "workspaceFolder"
+  },
+  "ltex.language": "fr",
+  "ltex.fr.dictionary": [
+    "empirie",
+    "l'empirie",
+    "Hoare",
+  ],
+}

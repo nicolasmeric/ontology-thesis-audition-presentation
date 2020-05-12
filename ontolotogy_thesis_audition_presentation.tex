@@ -1,0 +1,1585 @@
+% vim: tabstop=2:softtabstop=2:shiftwidth=2:expandtab
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Preamble
+\documentclass[
+  % The hyperref package is automatically loaded by beamer.cls
+  % and certain options are set up.
+  % In order to pass additional options to hyperref or to override options,
+  % you can use the following class option:
+  % \documentclass[hyperref=⟨list of options⟩]{beamer}
+  %   Causes the ⟨list of options⟩ to be passed on to the hyperref package.
+  %   Example:
+  %   \documentclass[hyperref={bookmarks=false}]{beamer}
+  % Alternatively, you can also use the \hypersetup command.
+  % See beamer documentation file beameruserguide.pdf,
+  % version 3.55, section 2.6, page 17.
+  hyperref={
+    % If option pdfusetitle is set then hyperref tries to derive the values
+    % for pdftitle and pdfauthor from \title and \author.
+    % An optional argument for \title and \author is supported (class amsart).
+    % See hyperref documentation file manual.pdf,
+    % Version September 2018, section 5.20, page 30.
+    pdfusetitle,
+    % The PDF format allows two encodings for bookmarks and entries
+    % in the information dictionary: PDFDocEncoding and Unicode as UTF-16BE.
+    % Option "pdfencoding" selects between these encodings:
+    % • "pdfdoc" uses PDFDocEncoding. It uses just one byte per character,
+    %   but the supported characters are limited (244 in PDF-1.7).
+    % • "unicode" sets Unicode. It is encoded as UTF-16BE.
+    %   Two bytes are used for most characters, surrogates need four bytes.
+    % • "auto" PDFDocEncoding if the string does not contain
+    %   characters outside the encoding and Unicode otherwise.
+    % See hyperref documentation file manual.pdf,
+    % Version September 2018, section 5.18, page 30.
+    pdfencoding=auto,
+    % LaTeX's NFSS is used to assist the conversion of arbitrary TeX strings
+    % to PDF strings (bookmarks, PDF information entries).
+    % Many math command names (\geq, \notin, ...) are not in control of NFSS,
+    % therefore they are defined with prefix 'text' (\textgeq, \textnotin, ...).
+    % They can be mapped to short names during the processing to PDF strings.
+    % The disadvantage is that they are many hundreds macros
+    % that need to be redefined for each PDF string conversion.
+    % Therefore this can be enabled or disabled as option 'psdextra'.
+    % On default the option is turned off (set to 'false').
+    % Turning the option on means that the short names are available.
+    % Then \geq can directly be used instead of \textgeq.
+    % See hyperref documentation file manual.pdf,
+    % Version September 2018, section 5.5, page 23.
+    psdextra,
+    % Colors the text of links and anchors.
+    % The colors chosen depend on the the type of link.
+    % At present the only types of link distinguished are citations,
+    % page references, URLs, local file references, and other links.
+    % Unlike colored boxes, the colored text remains when printing.
+    % See hyperref documentation file manual.pdf,
+    % Version September 2018, section 3.5, page 10.
+    colorlinks=true,
+    % Color for normal internal links.
+    % See hyperref documentation file manual.pdf,
+    % Version September 2018, section 3.5, page 10.
+    linkcolor=darkblue,
+    % Color for bibliographical citations in text.
+    % See hyperref documentation file manual.pdf,
+    % Version September 2018, section 3.5, page 10.
+    citecolor=darkred,
+    % Color for linked URLs.
+    % See hyperref documentation file manual.pdf,
+    % Version September 2018, section 3.5, page 10.
+    urlcolor=darkblue,
+  },
+  % The xcolor package is automatically loaded by beamer.cls.
+  % The same applies as to color.
+  % \documentclass[xcolor=⟨list of options⟩]{beamer}
+  %   Causes the ⟨list of options⟩ to be passed on to the xcolor package.
+  % When using beamer together with the pstricks package,
+  % be sure to pass the xcolor=pst option to beamer (and hence to xcolor).
+  % See beamer documentation file beameruserguide.pdf,
+  % version 3.55, section 2.6, page 19-20.
+  %xcolor={
+  %  % • options that control whether
+  %  % and how certain sets of predefined colors are being loaded:
+  %  % dvipsnames, dvipsnames*, svgnames, svgnames*, x11names, x11names*,
+  %  % See xcolor documentation file xcolor.pdf,
+  %  % v2.12.8, 2016/05/11, section 2.1.2, page 7.
+  %  %
+  %  % WARNING: When using classisthesis package, dvispsnames option must be set
+  %  % to circumvent compilation error.
+  %  % See:
+  %  % https://tex.stackexchange.com/questions/124636/
+  %  % package-xcolor-error-undefined-colors
+  %  % -maroon-royal-blue-when-master-has-pdf/128667#128667
+  %  %
+  %  % Or dvipsnames option can be set by the document class definition.
+  %  dvipsnames
+  %},
+  % As pointed out in Section 5.6.1,
+  % measuring the default font size in points is not
+  % really a good idea for presentations.
+  % Nevertheless, beamer does just that,
+  % setting the default font size to 11pt as usual.
+  % This may seem ridiculously small,
+  % but the actual size of each frame size is by default just 128mm by 96mm
+  % and the viewer application enlarges the font.
+  % By specifying a default font size smaller than 11pt
+  % you can put more onto each slide,
+  % by specifying a larger font size you can fit on less.
+  % To specify the font size, you can use the following class options.
+  % See beamer documentation file beameruserguide.pdf,
+  % version 3.55, section 18.2.1, page 199.
+  9pt,
+  % The size of a frame is actually the "paper size" of a beamer presentation,
+  % and it is variable.
+  % By default, it amounts to 128mm by 96mm.
+  % The aspect ratio of this size is 4:3,
+  % which is exactly what most beamers offer these days.
+  % It is the job of the presentation program
+  % (like acroread, xpdf, okular or evince) to display
+  % the slides at full screen size.
+  % The main advantage of using a small "paper size" is
+  % that you can use all your normal fonts at their natural sizes.
+  % In particular, inserting a graphic with 11pt labels will result
+  % in reasonably sized labels during the presentation.
+  % To change "paper size" and aspect ratio,
+  % you can use the following class options:
+  % \documentclass[aspectratio=1610]{beamer}
+  %   Sets aspect ratio to 16:10, and frame size to 160mm by 100mm.
+  % \documentclass[aspectratio=169]{beamer}
+  %   Sets aspect ratio to 16:9, and frame size to 160mm by 90mm.
+  % \documentclass[aspectratio=149]{beamer}
+  %   Sets aspect ratio to 14:9, and frame size to 140mm by 90mm.
+  % \documentclass[aspectratio=141]{beamer}
+  %   Sets aspect ratio to 1.41:1, and frame size to 148.5mm by 105mm.
+  % \documentclass[aspectratio=54]{beamer}
+  %   Sets aspect ratio to 5:4, and frame size to 125mm by 100mm.
+  % \documentclass[aspectratio=43]{beamer}
+  %   The default aspect ratio and frame size. You need not specify this option.
+  % \documentclass[aspectratio=32]{beamer}
+  %   Sets aspect ratio to 3:2, and frame size to 135mm by 90mm.
+  % Aside from using these options,
+  % you should refrain from changing the "paper size".
+  % See beamer documentation file beameruserguide.pdf,
+  % version 3.55, section 8.3, pages 77-78.
+  aspectratio=169,
+]{beamer}
+
+% Load \ifluatex macro.
+\usepackage{ifluatex}
+
+% Modern beamer theme.
+\usetheme[
+  % Optionally adds a progress bar to the top of each frame (head),
+  % the bottom of each frame (foot),
+  % or directly below each frame title (frametitle).
+  % See metropolis documentation file metropolistheme.pdf,
+  % v1.2, 2017/01/23, section 3.1.3, page 8.
+  progressbar=frametitle,
+  % Optionally adds a light grey background
+  % to block environments like theorem and example.
+  % See metropolis documentation file metropolistheme.pdf,
+  % v1.2, 2017/01/23, section 3.1.4, page 8.
+  block=fill,
+  % Adds a slide at the start of each section (simple)
+  % with an optional thin progress bar below the section title (progressbar).
+  % The none option disables the section page.
+  % See metropolis documentation file metropolistheme.pdf,
+  % v1.2, 2017/01/23, section 3.1.2, page 7.
+  sectionpage = none,
+]{metropolis}
+
+% Change metropolis theme progress bar thickness.
+% See: https://github.com/matze/mtheme/issues/237.
+\makeatletter
+\setlength{\metropolis@titleseparator@linewidth}{1.5pt}
+\setlength{\metropolis@progressonsectionpage@linewidth}{1.5pt}
+\setlength{\metropolis@progressinheadfoot@linewidth}{1.5pt}
+\makeatother
+
+% Setup custom fonts loading.
+%
+% Fonts loading must be configured after loading metropolis beamer theme,
+% otherwise metropolis class loading process overwrites custom fonts loading.
+% Load luatex specific options.
+\ifluatex{}
+  % The fontspec package allows users of either XeTeX or LuaTEX
+  % to load OpenType fonts in a LATEX document.
+  % No font installation is necessary,
+  % and font features can be selected and used as desired
+  % throughout the document.
+  % See fontspec documentation file fontspec.pdf,
+  % v2.7c, 2019/03/15, part 1 section 2, page 5.
+  \usepackage{fontspec}
+  % It is sometimes useful to deﬁne font features that are applied
+  % to every subsequent font selection command.
+  % This may be deﬁned with the \defaultfontfeatures command,
+  % shown in Example 5.
+  % New calls of \defaultfontfeatures overwrite previous ones,
+  % and defaults can be reset by calling the command with an empty argument.
+  % See fontspec documentation file fontspec.pdf,
+  % v2.7c, 2019/03/15, part 3 section 1, page 21.
+  %\defaultfontfeatures{Ligatures=TeX}
+  % Load your system fonts; e.g.:
+  %\setmainfont{LinLibertineO}
+  %\setsansfont{LinBiolinumO}
+  %\setmonofont{Inconsolata}
+  % Load EB Garamond font
+  %\setmainfont{EB Garamond}
+  % Load Ysabeau font
+  % These are the main font-selecting commands of this package.
+  % See fontspec documentation file fontspec.pdf,
+  % v2.7c, 2019/03/15, part 2 section 1, page 9.
+  %\setsansfont[
+  %  % The automatic bold, italic, and bold italic font selections will not be
+  %  % adequate for the needs of every font: while some fonts mayn't even have
+  %  % bold or italic shapes,
+  %  % in which case a skilled (or lucky) designer may be able to chose
+  %  % well-matching accompanying shapes from a different font altogether,
+  %  % others can have a range of bold and italic fonts to chose among.
+  %  % The BoldFont and ItalicFont features are provided for these situations.
+  %  % See fontspec documentation file fontspec.pdf,
+  %  % v2.7c, 2019/03/15, part 2 section 4.1, page 15.
+  %  %UprightFont={Ysabeau Light},
+  %  SmallCapsFont={YsabeauSC Light},
+  %  %SmallCapsFeatures={Letters=SmallCaps},
+  %  ItalicFont={Ysabeau Light Italic},
+  %  ItalicFeatures={SmallCapsFont=Ysabeau Light Italic, Letters=SmallCaps},
+  %  BoldFont={Ysabeau Regular},
+  %  BoldFeatures={SmallCapsFont=YsabeauSC Regular},
+  %  BoldItalicFont={Ysabeau Italic},
+  %  BoldItalicFeatures={SmallCapsFont=Ysabeau Italic},
+  %  % The Numbers feature deﬁnes how numbers will look in the selected font,
+  %  % accepting options shown in Table 13.
+  %  % The synonyms Uppercase and Lowercase are
+  %  % equivalent to Lining and OldStyle, respectively.
+  %  % The differences have been shown previously in Section 2 on page 22.
+  %  % See fontspec documentation file fontspec.pdf,
+  %  % v2.7c, 2019/03/15, part 4 section 3.1.10, page 44.
+  %  Numbers=Lining,
+  %  % Ligatures refer to the replacement of two separate characters
+  %  % with a specially drawn glyph for functional or æsthetic reasons.
+  %  % The list of options, of which multiple may be selected at one time,
+  %  % is shown in Table 11.
+  %  % See fontspec documentation file fontspec.pdf,
+  %  % v2.7c, 2019/03/15, part 4 section 3.1.8, page 44.
+  %  %Ligatures=Historic,
+  %  %Ligatures=Rare,
+  %]{Ysabeau Light}
+% Load pdftex specific options.
+\else
+  \usepackage[utf8]{inputenc}
+  \usepackage[T1]{fontenc}
+  % Load some Type 1 font; e.g.:
+  %\usepackage[fulloldstylenums,largesmallcaps]{kpfonts}
+  % Load EB Garamond font
+  %\usepackage{ebgaramond}
+\fi
+
+% babel-french has been designed to take advantage of the xspace package
+% if present: adding \usepackage{xspace} in the preamble will force macros
+% like \fg, \ier, \ieme, \dots,..., to respect the spaces you type after them,
+% for instance typing '1\ier juin' will print '1 er juin'
+% (no need for a forced space after 1\ier).
+% See babel-french documentation file frenchb.pdf,
+% v3.5e, 2019/03/30, section 1.1, page 5.
+\usepackage{xspace}
+
+% A command \up is provided to typeset superscripts like M\up{me}
+% (abbreviation for "Madame"), 1\up{er} (for "premier").
+% Other commands are also provided for ordinals:
+% \ier, \iere, \iers, \ieres, \ieme, \iemes (3\iemes prints 3 es ).
+% All these commands take advantage of real superscript letters
+% when they are available in the current font.
+% See babel-french documentation file frenchb.pdf,
+% v3.5e, 2019/03/30, section 1.1, page 4.
+%
+% The only packages I currently know to take advantage
+% of real superscripts are
+% a) realscripts used in conjunction with XeLaTeX or LuaLaTeX
+% and OpenType fonts having the font feature 'VerticalPosition=Superior'
+% and b) fourier (from version 1.6) when Expert Utopia fonts are available.
+% See babel-french documentation file frenchb.pdf,
+% v3.5e, 2019/03/30, section 2.5, page 42.
+%
+% WARNING:
+% This package is not compatible with pdftex.
+%
+% WARNING:
+% When using symbols instead of numbers as footnote markers,
+% like when one redefines \thefootnote command
+% to configure \fnsymbol:
+%   \renewcommand{\thefootnote}{\fnsymbol{footnote}}
+% then, if this package is loaded, the symbols will not be superscripted.
+% So do not load this package in this case,
+% or when using packages which redefine \thefootnote command
+% to use symbols like alphalph package or footmisc package.
+% \ifluatex{}
+%   \usepackage{realscripts}
+% \fi
+
+% Use french typography rules.
+\usepackage[
+  % In multilingual documents, just use several options.
+  % The last one is considered the main language, activated by default.
+  % Sometimes, the main language changes the document layout
+  % (eg, spanish and french).
+  % You can also set the main language explicitly:
+  % \documentclass{article}
+  % \usepackage[main=english,dutch]{babel}
+  % See babel documentation file babel.pdf,
+  % Version 3.31, 2019/05/04, section 1.2, page 5.
+  english,
+  main=french,
+]{babel}
+
+% \babeltags{<tag1> = <language1>, <tag2> = <language2>, ...}
+% New 3.9i In multilingual documents with many language switches
+% the commands above can be cumbersome.
+% With this tool shorter names can be defined.
+% It adds nothing really new – it is just syntactical sugar.
+% It defines \text<tag1>{<text>} to be \foreignlanguage{<language1>}{<text>},
+% and \begin{<tag1>} to be \begin{otherlanguage*}{<language1>}, and so on.
+% Note \<tag1> is also allowed, but remember to set it locally inside a group.
+% See babel documentation file babel.pdf,
+% Version 3.31, 2019/05/04, section 1.9, page 10.
+\babeltags{english=english, french=french}
+
+% Add nice quotation macros.
+\usepackage[
+  % This option controls multilingual support.
+  % It requires either the babel package or the polyglossia package.
+  % autostyle=true continuously adapts the quote style
+  % to the current document language;
+  % once will only adapt the style once so that it matches
+  % the main language of the document.
+  % autostyle=try and tryonce are similar
+  % to true and once if multilingual support is available
+  % but will not issue any warnings
+  % if not (i.e., if neither babel nor polyglossia have been loaded).
+  % The short form autostyle is equivalent to autostyle=true.
+  % See csquotes documentation file csquotes.pdf,
+  % v5.2e, 2019/05/10, section 2.1, page 2-3.
+  autostyle=true,
+]{csquotes}
+
+% This package is used by hyperref package via hycolor package,
+% and by impnattypo package.
+%
+% Package xcolor provides macros for extracting color values
+% and converting color data to other color models.
+% If this package is loaded, the full range of color specifications
+% of packages color and xcolor are supported
+% including the optional argument for the color model.
+% See hycolor documentation file hycolor.pdf,
+% Version 1.8, May 16, 2016, section 1, page 2.
+%
+% WARNING: xcolor is loaded by beamer.
+% You do not need to load xcolor if you use beamer.
+%
+% This documentation is part of version 3.55 of the beamer class.
+% beamer needs a reasonably recent version of several standard packages
+% to run and also the following versions of two special packages
+% (later versions should work, but not necessarily):
+% ∙ pgf.sty version 1.00,
+% ∙ xcolor.sty version 2.00.
+% If you use pdflatex, which is optional, you need
+% ∙ pdflatex version 0.14 or higher. Earlier versions do not work.
+% See beamer documentation file beameruserguide.pdf,
+% version 3.55, section 2.1, page 14.
+%
+% WARNING: xcolor is loaded by impnattypo package.
+% If you want to pass specific option to xcolor
+% load xcolor before impnattypo package.
+% See impnattypo documentation file impnattypo.pdf,
+% 1.5, 2019/03/04, section 3, page 4.
+%
+% WARNING: xcolor is loaded by pdfx package.
+% You do not need to load xcolor if you use pdfx package.
+%
+% The pdfx.sty package works with pdfTeX and also LuaTeX and XeTeX
+% with some minor limitations.
+% It further depends on the following other packages.
+% 4. xcolor for ensuring consistent use
+% of the color model appropriate the PDF variant,
+% within text and hyperlinks (when allowed).
+% See pdfx documentation file pdfx.pdf,
+% Version 1.6.3, 2019/02/27, section 3.1, page 16.
+%\usepackage{xcolor}
+
+% Define colors for urls, links and citations, used by hyperref.
+\colorlet{darkblue}{blue!50!black}
+\colorlet{darkred}{red!50!black}
+
+% Add some french typographic recommandations.
+%
+% When it comes to French typography,
+% the Lexique des règles typographiques en usage à l'Imprimerie Nationale is
+% a definite reference.
+% While the majority of the recommendations of this book has been implemented
+% in the frenchb module for babel,
+% other recommendations still deserve to be automatized
+% in order to be implemented in LATEX.
+% See impnattypo documentation file impnattypo.pdf,
+% 1.5, 2019/03/04, section 1, page 1.
+%
+% Enable specific options when using luatex or pdftex.
+% Load luatex specific options.
+\ifluatex{}
+  \usepackage[
+    % Besides the general hyphenation rules, the booklet indicates
+    % that we should
+    % "prevent hyphenation of words on more than two consecutive lines."
+    % In order to simplify the code,
+    % the suggested implementation strongly discourages hyphenation
+    % at the end of pages, as well as hyphenation on two consecutive lines.
+    % To active this functionality, use the hyphenation option.
+    % See impnattypo documentation file impnattypo.pdf,
+    % 1.5, 2019/03/04, section 2.1, page 1.
+    hyphenation,
+    % Parapagrah indentation is achieved by babel
+    % but not with beamer (I don't know if it is intentional).
+    % Enable parindent option to force paragraph indentation with beamer.
+    %
+    % The booklet advises to indent paragraphs by 1em.
+    % This \parindent setting can be achieved by using the parindent option.
+    % See impnattypo documentation file impnattypo.pdf,
+    % 1.5, 2019/03/04, section 2.2, page 2.
+    %parindent,
+    % Moreover, it is indicated in the "Hyphenation" section
+    % that "the last line of a paragraph must contain a word
+    % or the end of a word of a width at least equal
+    % to the double of the indent of the next paragraph."
+    % Since implementing this solution exactly is quite tricky,
+    % the lastparline option ensures that the last line of a paragraph is
+    % at least as long as the double value of \parindent.
+    % When LuaTEX is used, the solution provided by Patrick Gundlach is used.
+    % With other rendering engines,
+    % it is the native solution provided by Enrico Gregorio that serves
+    % as an implementation:
+    % When the draft option is activated and LuaTEX is used,
+    % the inserted ties are colored in teal.
+    % The color can be tuned with the lastparlinecolor option.
+    % See impnattypo documentation file impnattypo.pdf,
+    % 1.5, 2019/03/04, section 2.2, page 2.
+    lastparline,
+    % \chapter macro must be used to enable this option
+    %frenchchapters,
+    % When the draft option is activated and LuaTEX is used,
+    % the inserted ties are colored in teal.
+    % The color can be tuned with the lastparlinecolor option.
+    % It is also recommended to avoid hyphenation points that would isolate
+    % a single letter.
+    % The solution proposed by Patrick Gundlach allows to
+    % fix this by using LuaTEX.
+    % To activate this functionality, you can use the nosingleletter option:
+    % When this option is activated, only LuaTEX
+    % (with the lualatex command) can render the document.
+    % When the draft option is activated,
+    % the inserted ties are colored in brown.
+    % The color can be tuned by setting the nosinglelettercolor option.
+    % See impnattypo documentation file impnattypo.pdf,
+    % 1.5, 2019/03/04, section 2.2, page 2.
+    nosingleletter,
+    % When two consecutive lines begin (homeoarchy) or end (homoioteleuton)
+    % with the same word or series of letters, it can confuse the reader,
+    % so this has to be avoided.
+    % Fixing this problem automatically is very complex
+    % and generally not a good idea.
+    % For this reason, the homeoarchy option in this
+    % package only detects and highlights them.
+    % Fixing them will usually be a matter of introducing ties in the paragraph:
+    % • Entire words are colored in red and this color can be set with the
+    %   homeoarchywordcolor option;
+    % • Partial words are colored in orange and this color can be set by means
+    %   of the homeoarchycharcolor option;
+    % A glyph sequence is considered problematic when:
+    % • The number of entire matching words is greater than 1.
+    %   This parameter can be tuned with the homeoarchymaxwords option;
+    % • The number of matching characters is greaterr than 3.
+    %   This parameter can be tuned with the homeoarchymaxchars option;
+    % See impnattypo documentation file impnattypo.pdf,
+    % 1.5, 2019/03/04, section 2.2, page 2.
+    homeoarchy,
+    % A river is a vertical alignment of spaces in a paragraph.
+    % The rivers option allows to color rivers so as to identify them.
+    % This option does not fix the detected rivers
+    % When this option is activated, only LuaTEX (with the lualatex command) can
+    % render the document.
+    % This option is only effective if the draft option is activated.
+    % The inserted ties are colored in lime.
+    % This color can be tuned by means of the riverscolor option.
+    % See impnattypo documentation file impnattypo.pdf,
+    % 1.5, 2019/03/04, section 2.2, page 3.
+    rivers,
+  ]{impnattypo}
+% Load pdftex specific options.
+\else
+  \usepackage[
+    hyphenation,
+    % Parapagrah indentation is achieved by babel
+    % but not with beamer (I don't know if it is intentional)
+    % Enable parindent option to force paragraph indentation with beamer
+    %parindent,
+    lastparline,
+    % \chapter macro must be used to enable this option
+    %frenchchapters,
+  ]{impnattypo}
+\fi
+
+% Widows (single lines at the top of a page)
+% and orphans (single lines at the bottom of a page) happen frequently
+% and should be avoided.
+% See nowidow documentation file nowidow.pdf,
+% 1.0, 2011/09/20, section 1, page 1.
+%
+% Lors de la mise en page, on s'interdira de placer une ligne creuse
+% en haut de page,
+% de laisser en bas de page la première ligne seule d'un alinéa,
+% de terminer une page (du moins une page impaire) sur un deux-points,
+% ou une page impaire sur une coupure de mot.
+% On proscrira également la présence d'un titre en bas de page s'il n'est pas
+% suivi d'au moins trois lignes de texte.
+% De même la dernière page d'un chapitre, d'un livre, etc., devra comporter
+% au minimum six lignes de texte.
+% See Lexique des règles typographiques en usage à l'Imprimerie nationale
+% book available at
+% http://www.circaete.net/eric/
+% Lexique%20des%20r%C3%A8gles%20typographiques%20en%20usage%20
+% %C3%A0%20l%27Imprimerie%20nationale.pdf,
+% section Présentation du texte, page 153.
+% \usepackage[
+%   % The defaultlines option sets the default minimal number of lines
+%   % to be kept after or before the page break.
+%   % See nowidow documentation file nowidow.pdf,
+%   % 1.0, 2011/09/20, section 2.1, page 2.
+%   defaultlines=4,
+%   % The all option sets the widow and orphan penalties for the whole document
+%   % upon loading the package.
+%   % See nowidow documentation file nowidow.pdf,
+%   % 1.0, 2011/09/20, section 2.1, page 2.
+%   all,
+% ]{nowidow}
+
+% Enhance typography.
+%
+% The package must be load after babel if used with it
+% See microtype documentation file microtype.pdf,
+% v2.7b, 2019/02/28, section 9, page 27.
+% and https://tex.stackexchange.com/questions/162137/
+% loading-microtype-before-or-after-the-font/162436#162436.
+\usepackage[
+  % Enable letterspacing (for small caps only by default)
+  %
+  % This option will systematically change the tracking of the fonts specified
+  % in the active font set (by default, all small capitals).
+  % It is not available with XeTeX (you may use the 'LetterSpace' option
+  % of the fontspec package instead).
+  % With pdfTeX, it is only available in PDF mode.
+  % See microtype documentation file microtype.pdf,
+  % v2.7b, 2019/02/28, section 3.1, page 6.
+  tracking=true,
+  % Slightly increase letterspacing
+  % to improve legibility (for small caps only by default)
+  %
+  % This option changes the default amount for tracking (see section 5.3)
+  % resp. letterspacing (see section 7).
+  % The amount is specified in thousandths of 1em;
+  % admissible values are in the range of −1000 to +1000.
+  % See microtype documentation file microtype.pdf,
+  % v2.7b, 2019/02/28, section 5.3, page 15-16.
+  % and http://thinkingwithtype.com/text/#tracking.
+  % (At first glance a value around 100 is used by default
+  % when tracking is enabled.)
+  letterspace=25,
+  % Loading the package with the babel option will adjust the typesetting
+  % according to the respective selected language.
+  % Read section 6 for further information.
+  % See microtype documentation file microtype.pdf,
+  % v2.7b, 2019/02/28, section 3.5, page 9.
+  babel,
+  % If the draft option is passed to the package,
+  % all micro-typographic extensions will be disabled,
+  % which may lead to different line, and hence page, breaks.
+  % The draft and final options may also be inherited from the class options;
+  % of course, you can override them in the package options.
+  % E.g., if you are using the class option draft to show any overfull boxes,
+  % you should load microtype with the final option.
+  % See microtype documentation file microtype.pdf,
+  % v2.7b, 2019/02/28, section 3.5, page 9.
+  %final,
+]{microtype}
+
+% Process bibliography using biber engine.
+\usepackage[
+  % biber, the default backend of biblatex, supports Ascii,
+  % 8-bit encodings, utf-8, on-the-fly reencoding, locale-specific sorting,
+  % and many other features.
+  % Locale-specific sorting, case-sensitive sorting,
+  % and upper/lowercase precedence are controlled by the options
+  % sortlocale, sortcase, and sortupper, respectively.
+  % See biblatex documentation file biblatex.pdf,
+  % 3.12, 2018/10/30, section 3.1.1, page 45.
+  backend=biber,
+  % Whether or not to print back references in the bibliography.
+  % The back references are a list of page numbers indicating the pages
+  % on which the respective bibliography entry is cited.
+  % If there are refsection environments in the document,
+  % the back references are local to the reference sections.
+  % Strictly speaking, this option only controls
+  % whether the biblatex package collects the data required
+  % to print such references.
+  % This feature still has to be supported by the selected bibliography style.
+  % All standard styles which come with this package do so.
+  % See biblatex documentation file biblatex.pdf,
+  % 3.12, 2018/10/30, section 3.1.2.1, page 50.
+  backref=true,
+  % Loads the citation style <file>.cbx.
+  % See § 3.3.1 for an overview of the standard citation styles.
+  % See biblatex documentation file biblatex.pdf,
+  % 3.12, 2018/10/30, section 3.1.1, page 45.
+  citestyle=alphabetic,
+  % Loads the bibliography style <file>.bbx.
+  % See § 3.3.2 for an overview of the standard bibliography styles.
+  % See biblatex documentation file biblatex.pdf,
+  % 3.12, 2018/10/30, section 3.1.1, page 45.
+  bibstyle=alphabetic,
+]{biblatex}
+
+% Create new cite style to print full author name.
+% See https://tex.stackexchange.com/questions/
+% 24979/citing-authors-full-name-in-biblatex#comment157667_73819.
+% WARNING: the lack of braces \citeauthor is intentional,
+% else the macro will not work as expected,
+% hence \citeauthor and not \citeauthor{}
+\newrobustcmd*{\citegivenfamilyauthor}{%
+  \AtNextCite{%
+    \DeclareNameAlias{labelname}{given-family}%
+  }\citeauthor
+}
+
+% Enable links for references within the document.
+%
+% The hyperref package transforms citations into hyperlinks.
+% See the hyperref and backref package options in § 3.1.2.1
+% for further details.
+% When using the hyperref package, it is preferable to load it after biblatex.
+% See biblatex documentation file biblatex.pdf,
+% Version 3.12, October 30, 2018, section 1.5.3, page 4.
+%
+% WARNING: hyperref is loaded by beamer.
+% Do not load hyperref if you use beamer.
+%
+% The hyperref package is automatically loaded by beamer.cls
+% and certain options are set up.
+% In order to pass additional options to hyperref or to override options,
+% you can use the following class option:
+% \documentclass[hyperref=⟨list of options⟩]{beamer}
+%   Causes the ⟨list of options⟩ to be passed on to the hyperref package.
+%   Example:
+%   \documentclass[hyperref={bookmarks=false}]{beamer}
+% Alternatively, you can also use the \hypersetup command.
+% See beamer documentation file beameruserguide.pdf,
+% version 3.55, section 2.6, page 17.
+%\usepackage[
+%  % If option pdfusetitle is set then hyperref tries to derive the values
+%  % for pdftitle and pdfauthor from \title and \author.
+%  % An optional argument for \title and \author is supported (class amsart).
+%  % See hyperref documentation file manual.pdf,
+%  % Version September 2018, section 5.20, page 30.
+%  pdfusetitle,
+%  % The PDF format allows two encodings for bookmarks and entries
+%  % in the information dictionary: PDFDocEncoding and Unicode as UTF-16BE.
+%  % Option "pdfencoding" selects between these encodings:
+%  % • "pdfdoc" uses PDFDocEncoding. It uses just one byte per character,
+%  %   but the supported characters are limited (244 in PDF-1.7).
+%  % • "unicode" sets Unicode. It is encoded as UTF-16BE.
+%  %   Two bytes are used for most characters, surrogates need four bytes.
+%  % • "auto" PDFDocEncoding if the string does not contain
+%  %   characters outside the encoding and Unicode otherwise.
+%  % See hyperref documentation file manual.pdf,
+%  % Version September 2018, section 5.18, page 30.
+%  pdfencoding=auto,
+%  % LaTeX's NFSS is used to assist the conversion of arbitrary TeX strings
+%  % to PDF strings (bookmarks, PDF information entries).
+%  % Many math command names (\geq, \notin, ...) are not in control of NFSS,
+%  % therefore they are defined with prefix 'text' (\textgeq, \textnotin, ...).
+%  % They can be mapped to short names during the processing to PDF strings.
+%  % The disadvantage is that they are many hundreds macros
+%  % that need to be redefined for each PDF string conversion.
+%  % Therefore this can be enabled or disabled as option 'psdextra'.
+%  % On default the option is turned off (set to 'false').
+%  % Turning the option on means that the short names are available.
+%  % Then \geq can directly be used instead of \textgeq.
+%  % See hyperref documentation file manual.pdf,
+%  % Version September 2018, section 5.5, page 23.
+%  psdextra,
+%  % Colors the text of links and anchors.
+%  % The colors chosen depend on the the type of link.
+%  % At present the only types of link distinguished are citations,
+%  % page references, URLs, local file references, and other links.
+%  % Unlike colored boxes, the colored text remains when printing.
+%  % See hyperref documentation file manual.pdf,
+%  % Version September 2018, section 3.5, page 10.
+%  colorlinks=true,
+%  % Color for normal internal links.
+%  % See hyperref documentation file manual.pdf,
+%  % Version September 2018, section 3.5, page 10.
+%  linkcolor=darkblue,
+%  % Color for bibliographical citations in text.
+%  % See hyperref documentation file manual.pdf,
+%  % Version September 2018, section 3.5, page 10.
+%  citecolor=darkred,
+%  % Color for linked URLs.
+%  % See hyperref documentation file manual.pdf,
+%  % Version September 2018, section 3.5, page 10.
+%  urlcolor=darkblue,
+%]{hyperref}
+
+% Add glossary handling
+\usepackage[
+  % (Option 3) The glossary information and indexing style file will be
+  % written in xindy format.
+  % If you use makeglossaries, it will automatically detect
+  % that it needs to call xindy.
+  % If you don't use makeglossaries, you need to remember to use
+  % xindy not makeindex.
+  % The indexing style file will been given a .xdy extension.
+  % This package option may additionally have a value
+  % that is a <key>=<value> comma-separated list to override
+  % the language and codepage.
+  % For example:
+  % \usepackage[xindy={language=english,codepage=utf8}]{glossaries}
+  % You can also specify whether you want a number group
+  % in the glossary.
+  % This defaults to true, but can be suppressed.
+  % For example:
+  % \usepackage[xindy={glsnumbers=false}]{glossaries}
+  % If no value is supplied to this package option
+  % (either simply writing xindy or writing xindy={})
+  % then the language, codepage and number group settings are unchanged.
+  % See Section 11 for further details on using xindy
+  % with the glossaries package.
+  % See glossaries documentation file glossaries-user.pdf,
+  % v4.42, 2019-01-06, section 2.4, page 80.
+  xindy,
+  % This creates a new glossary with the label acronym.
+  % This is equivalent to:
+  % \newglossary[alg]{acronym}{acr}{acn}{\acronymname}
+  % See glossaries documentation file glossaries-user.pdf,
+  % v4.42, 2019-01-06, section 2.5, page 81.
+  acronym,
+]{glossaries-extra}
+% The command \makeglossaries must be placed in the preamble
+% in order to create the customised makeindex (.ist) or xindy (.xdy) style file
+% (for Options 2 or 3, respectively)
+% and to ensure that glossary entries are written to
+% the appropriate output files.
+% If you omit \makeglossaries none of the glossary files will be created.
+% Note that some of the commands provided by the glossaries package must not be
+% used after \makeglossaries as they are required when creating
+% the customised style file.
+% If you attempt to use those commands after \makeglossaries
+% you will generate an error.
+% Similarly, there are some commands that must not be used
+% before \makeglossaries.
+% See glossaries documentation file glossaries-user.pdf,
+% v4.42, 2019-01-06, section 3.2, page 90.
+\makeglossaries{}
+
+% Handle SI units.
+%
+% siunitx aims to provide a unified method for LaTeX users to typeset
+% numbers and units correctly and easily.
+% See siunitx documentation file siunitx.pdf,
+% v2.7s, 2018/05/17, section 1, page 3.
+\usepackage[
+  % Binary data is expressed in units of bits and bytes.
+  % These are normally given prefixes which use powers of two,
+  % rather than the powers of ten used by the SI prefixes.
+  % As these binary prefixes are closely related to the SI prefixes,
+  % they are defined by siunitx but do have to be loaded using
+  % binary-units = true (or simply binary-units) (Table 22).
+  % The units \bit and \byte are then also available.
+  % See siunitx documentation file siunitx.pdf,
+  % v2.7s, 2018/05/17, section 5.11, page 36.
+  binary-units=true,
+  % siunitx allows the user to switch
+  % between the typographic conventions of different (geographical) areas
+  % by using locales.
+  % Currently, the package is supplied with configurations
+  % for locales UK, US, DE (Germany), FR (French) and ZA (South Africa).
+  % The locale option is used to switch to a particular locale.
+  % See siunitx documentation file siunitx.pdf,
+  % v2.7s, 2018/05/17, section 5.16, page 58.
+  locale=FR,
+]{siunitx}
+
+% The behaviour of the siunitx package is controlled
+% by a number of key–value options.
+% These can be given globally using the \sisetup function
+% or locally as the optional argument to the user macros.
+% See siunitx documentation file siunitx.pdf,
+% v2.7s, 2018/05/17, section 5.1, page 17.
+\sisetup{
+  % The siunitx package controls the font used
+  % to print output independently of the sur rounding material.
+  % The standard method is to ignore the surroundings entirely,
+  % and to use the current body fonts.
+  % However, the package can detect and follow
+  % surrounding bold, italic and font family changes.
+  % The font detection options are summarised in Table 12.
+  % The options detect-weight and detect-shape set detection
+  % of the prevailing font weight and font shape states, respectively.
+  % The font shape state is only checked
+  % if the surrounding material is not in math mode
+  % (as math text is always italic).
+  % The detect-shape option is an extension of the older detect-italic option,
+  % which is retained for backward compatibility.
+  % Detecting the current family (roman, sans serif or monospaced)
+  % is controlled by the detect-family setting,
+  % while the current mode (text or math) is detected
+  % using the detect-mode switch.
+  % For convenience, all of the preceding options can be turned on or off
+  % in one go using the detect-all and detect-none options.
+  % As the names indicate, detect-all sets all of
+  % detect-weight, detect-family, detect-shape and detect-mode to true,
+  % while detect-none sets all of them to false.
+  % See siunitx documentation file siunitx.pdf,
+  % v2.7s, 2018/05/17, section 5.2, page 17-18.
+  detect-all,
+}
+
+% This article describes some additional commands to enhance
+% the quality of tables in LaTeX.
+% Guidelines are given as to what constitutes a good table in this context.
+% The 2000 release (Version 1.61) of the booktabs package,
+% described herein, adds
+% some enhancements to the 1995 release (Version 1.00),
+% most notably longtable compatibility.
+% Releases (Versions 1.618, 1.6180, 1.61803 and 1.618033) are only bug patches,
+% support for the colortbl package and better compatability with longtable.
+% See booktabs documentation file booktabs.pdf,
+% v1.618033, 2016/04/27, Abstract, page 1.
+\usepackage{booktabs}
+
+% This package helps to create common layout for tabular material.
+% The \thead command, based on one-column tabular environment,
+% is offered for creation of tabular column heads.
+% This macro allows to support common layout
+% for tabular column heads in whole documentation.
+% Another command, \makecell, is offered
+% for creation of multilined tabular cells.
+% There are also command \makecellbox command
+% and mcellbox environment usage of tabular cells inside text.
+% See makecell documentation file makecell.pdf,
+% v0.1e, 2009/08/03, Abstract, page 1.
+\usepackage{makecell}
+
+% The svg package is intended for the automated integration of SVG graphics
+% into LATEX documents.
+% Therefor the capabilities provided by Inkscape
+% — or more precisely its command line tool—
+% are used to export the text within a SVG graphic to a separate file,
+% which is then rendered by LATEX.
+% The two commands \includesvg and \includeinkscape are provided
+% as central user-interface,
+% which are very similar to the \includegraphics command
+% of the graphicx package.
+% In addition, the package svg-extract allows the extraction of these graphics
+% into independent files in different graphic formats,
+% exactly as it is rendered within the document.
+% For the creation of these graphics in the well-known formats PDF, EPS and PS,
+% LATEX and possibly conversion tools shipped with the distribution are used.
+% If the graphics are required in other file formats,
+% either ImageMagick or Ghostscript can be invoked.
+% See svg documentation file svg.pdf,
+% v2.02b, 2018/11/12, Introduction, page 1.
+\usepackage[
+  % This option controls, when the export with Inkscape is invoked
+  % and is true by default.
+  % In addition to controlling the export behavior,
+  % the option inkscape can also be used to make additional settings,
+  % which then acts as a wrapper for the options described below.
+  % pdf/eps/ps/png
+  %   see inkscapeformat=pdf/eps/ps/png
+  % latex/nolatex
+  %   see inkscapelatex=true/false
+  % drawing/page
+  %   see inkscapearea=drawing/page
+  % <integer>dpi
+  %   see inkscapedpi=<integer>
+  % See svg documentation file svg.pdf,
+  % v2.02b, 2018/11/12, Introduction, page 4.
+  %
+  % I set this option to have a faithful svg conversion,
+  % but I lose the feature to have text in svg converted
+  % to text in the targeted pdf
+  inkscape=nolatex,
+]{svg}
+
+% I wish to start with the questions "What is TikZ?".
+% Basically, it just defines a number of TeX commands that draw graphics.
+% See pgf/tikz documentation file pgfmanual.pdf,
+% Version 3.1.1, February 2, 2019, section 1, page 26.
+\usepackage{tikz}
+
+% The libraries arrows and arrows.spaced from older versions of pgf are
+% still available for compatibility, but they are considered deprecated.
+% The standard arrow tips, which are loaded by the library arrows.meta, are
+% documented in Section 16.5.
+% See pgf/tikz documentation file pgfmanual.pdf,
+% Version 3.1.1, February 2, 2019, section 42, page 562.
+%
+% The library is used to draw stealth tips for arrows.
+% Arrow Tip Kind Stealth:
+% This arrow tip is similar to a Kite, only the inset now counts "inwards".
+% Because of that sharp angles, for this arrow tip is makes quite a difference,
+% visually, if use the round option.
+% Also, using the harpoon option (or left or right) will lengthen
+% the arrow tip because of the even sharper corner at the tip.
+% See pgf/tikz documentation file pgfmanual.pdf,
+% Version 3.1.1, February 2, 2019, section 16.5.3, page 213.
+\usetikzlibrary{arrows.meta}
+
+% The decoration libraries define
+% a number of (more or less useful) decorations that can be applied to paths.
+% The usage of decorations is not covered in the present section,
+% please consult Sections 24, which explains how decorations are used in TikZ,
+% and 103, which explains how new decorations can be defined.
+% The decorations are influenced by a number of parameters
+% that can be set using the decoration option.
+% These parameters are typically shared between different decorations.
+% In the following, the general options are documented
+% (they are defined directly in the decoration module),
+% special-purpose keys are documented with the decoration that uses it.
+% Since you are encouraged to use these keys
+% to make your own decorations configurable,
+% it is indicated for each key where the value is stored
+% (so that you can access it).
+% Note that some values are stored in TeX dimension registers
+% while others are stored in macros.
+% See pgf/tikz documentation file pgfmanual.pdf,
+% Version 3.1.2, April 4, 2019, section 50.1, page 628.
+%
+% This library defines decorations that replace
+% the to-be-decorated path by another path.
+% Unlike morphing decorations, the replaced path might be quite different,
+% for instance a straight line might be replaced by a set of circles.
+% Note that filling a path that has been replaced using one of the decorations
+% in this library typically does not fill the original area
+% but, rather, the smaller area of the newly-created path segments.
+% See pgf/tikz documentation file pgfmanual.pdf,
+% Version 3.1.2, April 4, 2019, section 50.3, page 632.
+\usetikzlibrary{decorations.text}
+
+% The decoration libraries define
+% a number of (more or less useful) decorations that can be applied to paths.
+% The usage of decorations is not covered in the present section,
+% please consult Sections 24, which explains how decorations are used in TikZ,
+% and 103, which explains how new decorations can be defined.
+% The decorations are influenced by a number of parameters
+% that can be set using the decoration option.
+% These parameters are typically shared between different decorations.
+% In the following, the general options are documented
+% (they are defined directly in the decoration module),
+% special-purpose keys are documented with the decoration that uses it.
+% Since you are encouraged to use these keys
+% to make your own decorations configurable,
+% it is indicated for each key where the value is stored
+% (so that you can access it).
+% Note that some values are stored in TeX dimension registers
+% while others are stored in macros.
+% See pgf/tikz documentation file pgfmanual.pdf,
+% Version 3.1.2, April 4, 2019, section 50.1, page 628.
+%
+% This library defines decorations that replace
+% the to-be-decorated path by another path.
+% Unlike morphing decorations, the replaced path might be quite different,
+% for instance a straight line might be replaced by a set of circles.
+% Note that filling a path that has been replaced using one of the decorations
+% in this library typically does not fill the original area
+% but, rather, the smaller area of the newly-created path segments.
+% See pgf/tikz documentation file pgfmanual.pdf,
+% Version 3.1.2, April 4, 2019, section 50.3, page 632.
+\usetikzlibrary{decorations.pathreplacing}
+
+% The listings package is a source code printer for LaTeX.
+% You can typeset stand alone files as well as listings
+% with an environment similar to verbatim
+% as well as you can print code snippets using a command similar to \verb.
+% Many parameters control the output
+% and if your preferred programming language isn't already supported,
+% you can make your own definition.
+% See listings documentation file listings.pdf,
+% Version 1.8b, 2019/02/07, Abstract, page 1.
+\usepackage{listings}
+
+% Set default listings style.
+\definecolor{sh_comment}{rgb}{0.12, 0.38, 0.18}
+\definecolor{sh_keyword}{rgb}{0.37, 0.08, 0.25}
+\definecolor{sh_string}{rgb}{0.06, 0.10, 0.98}
+\lstset{
+  frame=lines,
+  breaklines=true,
+  numberstyle=\scriptsize,
+  numbers=left,
+  basicstyle= \ttfamily\tiny,
+  stringstyle=\color{sh_string},
+  keywordstyle=\color{sh_keyword},
+  commentstyle=\color{sh_comment}\itshape,
+  captionpos=b,
+  lineskip=-0.3em,
+  escapeinside={/*@}{@*/},
+}
+
+% Listings configuration for AltaRica language.
+\lstdefinelanguage{AltaRica}{
+  moredelim=[s]{\{}{\}},
+  moredelim=[s]{<}{>},
+  moredelim=[l]{;},
+  morekeywords={
+    domain, node, edon, flow, state, event, trans,
+    init, assert, extern, law, sub
+  },
+}
+
+% Listings configuration for diff patch files.
+%
+\colorlet{darkgrey}{gray!50!black}
+\colorlet{diffstart}{darkgrey}
+\colorlet{darkgreen}{green!50!black}
+\colorlet{diffincl}{darkgreen}
+\colorlet{diffrem}{darkred}
+\colorlet{difffile}{darkblue}
+
+\lstdefinelanguage{diffpatchfile}{
+  basicstyle=\ttfamily\footnotesize,
+  morecomment=[s][\color{diffstart}]{@@\ }{\ @@},
+  morecomment=[f][\color{diffincl}]{+},
+  morecomment=[f][\color{difffile}]{+++},
+  morecomment=[f][\color{diffrem}]{-},
+  morecomment=[f][\color{difffile}]{---},
+}
+
+% Use symbols instead of numbers as footnote markers
+% Symbol sequence: * \dagger \ddagger \S \P ...
+% See:
+% https://tex.stackexchange.com/a/830
+% or
+% https://tex.stackexchange.com/questions/826/
+% symbols-instead-of-numbers-as-footnote-markers/830#830
+%
+% WARNING:
+% When using symbols instead of numbers as footnote markers,
+% like when one redefines \thefootnote command
+% to configure \fnsymbol:
+%   \renewcommand{\thefootnote}{\fnsymbol{footnote}}
+% then, if the realscripts package is loaded, the symbols will not be superscripted.
+% So do not load this package in this case,
+% or when using packages which redefine \thefootnote command
+% to use symbols like alphalph package or footmisc package.
+% \renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+% Add nice references macros.
+%
+% The cleveref package must be loaded after all other packages
+% that don't specifically support it,
+% i.e. the \usepackage{cleveref} line should usually be
+% the last \usepackage command in your document's preamble.
+% See cleveref documentation file cleverref.pdf,
+% Version 0.21.4, March 27, 2018, section 13, page 24.
+% WARNING: cleveref is not compatible with beamer.
+% See: https://tex.stackexchange.com/questions/481022/
+% hyperlinks-do-not-work-with-cleveref-beamer.
+%\usepackage[
+%  % Note that when using babel, you still need to tell cleveref
+%  % which language it should use for the default cross-reference formats.
+%  % It is not sufficient to pass the language option to babel alone.
+%  % You must also either pass the language options to cleveref package
+%  % directly when loading it:
+%  % \usepackage[<language>]{cleveref}
+%  % or (better) specify the desired language globally
+%  % as a document class option:
+%  % \documentclass[<language>]{<class>}
+%  % \usepackage{babel}
+%  % \usepackage{cleveref}
+%  % The latter method is strongly recommended.
+%  % LATEX automatically passes document class options to every loaded package.
+%  % So specifying the language as a global option causes
+%  % the appropriate language support to be enabled automatically
+%  % in every package that supports it.
+%  % See cleveref documentation file cleverref.pdf,
+%  % Version 0.21.4, March 27, 2018, section 10, page 20-21.
+%  french,
+%]{cleveref}
+
+% Add glossary using glossaries macro
+% The glossary is processed by makeglossaries script
+% You can store all your glossary entry definitions in another file and use:
+% \loadglsentries[<type>]{<filename>}
+% where <filename> is the name of the file containing
+% all the \newglossaryentry or \longnewglossaryentry commands.
+% See glossaries documentation file glossaries-user.pdf,
+% v4.42, 2019-01-06, section 4.6, page 112.
+\loadglsentries{glossary}
+% Do not add the glossaries to the table of contents
+% See glossaries documentation file glossaries-user.pdf,
+% v4.42, 2019-01-06, section 2.2, page 68.
+% This is delegated to beamer using \section macro.
+% This way the entry is nicely processed.
+\glstocfalse{}
+
+% Add bibliography using biblatex macro.
+%
+% Adds a <resource>, such as a .bib file, to the default resource list.
+% This command is only available in the preamble.
+% It replaces the \bibliography legacy command.
+% Note that files must be specified with their full name,
+% including the extension.
+% Do not omit the .bib extension from the filename.
+% Also note that the <resource> is a single resource.
+% If the resources contain duplicate entries (that is, duplicate entrykeys),
+% it is backend dependent what then happens.
+% For example, by default biber will ignore
+% further occurrence of entrykeys unless its --noskipduplicates options is
+% used.
+% Invoke \addbibresource multiple times to add more resources.
+% See biblatex documentation file biblatex.pdf,
+% 3.12, 2018/10/30, section 3.7.1, page 81-82.
+\addbibresource{bibliography.bib}
+
+% Show notes on the second screen to the right.
+%
+% beamer uses the package pgfpages to typeset two-screen presentations.
+% Because of this, your first step when creating a two-screen presentation is
+% to include this package
+% See beamer documentation file beameruserguide.pdf,
+% version 3.55, section 22, page 217.
+\usepackage{pgfpages}
+% The first way to use a second screen is to show the presentation
+% on the main screen and to show your notes on the second screen.
+% The option show notes on second screen can be used for this.
+% It is described on page 206.
+% See beamer documentation file beameruserguide.pdf,
+% version 3.55, section 22, page 217.
+%
+% \setbeameroption{show notes on second screen=⟨location⟩}
+% When this option is given, a two screen version of your talk is created,
+% see Section 22 for further details.
+% The second screen, which is displayed on the right by default,
+% shows your notes.
+% By specifying a different ⟨location⟩, you can also place the second screen
+% on the left, bottom, or top.
+% See beamer documentation file beameruserguide.pdf,
+% version 3.55, section 19.3, page 206.
+%\setbeameroption{show notes on second screen=right}
+
+
+% Title page and pdf metadata configuration.
+\title{%
+  Audition pour l'attribution d'une allocation doctorale pour la thèse%
+  % I end this specific line with a '%' to avoid an extraspace in the pdf tags,
+  % introduced by \texorpdfstring{\\}{} command.
+  \texorpdfstring{\\}{}
+  \texorpdfstring{%
+  \enquote{%
+    Conception et Implémentation d'un Environnement d'Ontologie
+    pour des Librairies Formelles%
+  }%
+  }{%
+    Conception et Implémentation d'un Environnement d'Ontologie
+    pour des Librairies Formelles%
+  }%
+}
+\author{%
+  % I end this specific line with a '%' to avoid an extraspace in the pdf tags,
+  % introduced by \texorpdfstring{\\}{} command.
+  {\Large Nicolas \texorpdfstring{\bsc{Méric}}{Méric}}%
+  \texorpdfstring{\\}{}
+  Directeur de thèse : Burkhart \texorpdfstring{\bsc{Wolff}}{Wolff}%
+  \texorpdfstring{\\}{}
+  Co-encadrant : Idir \texorpdfstring{\bsc{Ait Sadoune}}{Ait Sadoune}%
+}
+\date{\frenchdate{2020}{06}{11}}
+% \institute{\glsname{IRT} SystemX}
+\subject{%
+  % The PDF format does not support explicit line breaks
+  % in PDF information fields.
+  % \textLF (line feed) or \textCR (carriage return) could be tried.
+  % See https://tex.stackexchange.com/questions/285954/
+  % hyperref-break-long-lines-in-pdftitle-and-other-fields/285964#285964.
+  % and the definition of the macro in:
+  % $TEXDIR/texmf-dist/source/latex/hyperref/hyperref.dtx.
+  Audition pour l'attribution d'une allocation doctorale pour la thèse
+  Conception et Implémentation d'un Environnement d'Ontologie
+  pour des Librairies Formelles%
+}
+\keywords{%
+ontologies, semantic web, formal theories, interactive proof development,
+access to formal knowledge%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document beginning.
+\begin{document}
+
+%\logo{\includegraphics[height=1cm]{SystemX}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title page.
+\begin{frame}
+  \titlepage{}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Table of contents.
+\begin{frame}{Sommaire}
+  \tableofcontents[hideallsubsections]{}
+  % \tableofcontents{}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Cursus du candidat}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Cursus du candidat}
+  \begin{itemize}
+    \item
+      architecte DevOps \textendash{} Expert en sécurité ;
+    \item
+      mémoire sur la sécurisation
+      du contrôle d'accès et des échanges informatiques
+      au sein de la mairie de Fontenay-sous-Bois non soutenu ;
+    \item
+      découverte du mon de la recherche à l'\gls{IRT} SystemX ;
+    \item
+      volonté de réorientation vers la recherche ;
+    \item
+      stage de mémoire sur
+      les modélisations comportementale et sémantique pour
+      la sûreté de fonctionnement des systèmes autonomes critiques.
+  \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Expérience en matière de recherche}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Proposition de stage}
+  Où :
+
+  au sein d'une tâche du projet \glsfirst{SVA}
+  qui vise à définir des méthodologies et des outils
+  pour la validation des systèmes de véhicules autonomes.
+
+  \medskip
+
+  Objectif :
+
+  Étudier la pertinence des logiques de description
+  (réseaux sémantiques, ontologies)
+  et leur potentielle utilisation dans la définition des concepts
+  de sûreté de fonctionnement.
+
+  \medskip
+
+  Idée :
+
+  Orienter la génération de scénarios
+  et identifier leurs classes
+
+  \(\implies\) S'assurer de la pertinence des scénarios générés
+
+  \(\implies\) Optimisation de la couverture de test.
+  \note{
+    La sémantique des arbres de défaillances
+    et la modélisation événementielle (AltaRica)
+    ne permettent pas d'appréhender la complexité de l'environnement,
+    c'est-a-dire la dynamique de l'environnement des systèmes autonomes.
+  }
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[allowframebreaks]{Approches déjà mises en œuvre}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}[allowframebreaks]{ISO~26262}
+%   \alert{Allocation des défaillances}
+%   \medskip
+
+%   Application de la norme ISO~26262
+%   avec des méthodes de sûreté de fonctionnement classiques
+%   (%
+%   \href{%
+%   https://fr.wikipedia.org/wiki/%
+%   Analyse_des_modes_de_d\%C3\%A9faillance,%
+%   _de_leurs_effets_et_de_leur_criticit\%C3\%A9%
+%   }{%
+%   \gls{AMDEC}%
+%   }%
+%   ).
+%   \begin{columns}
+%     \begin{column}{0.49\textwidth}
+%       \begin{figure}
+%         \centering
+%         \includegraphics[width=0.6\textwidth]{%
+%           figures/fault_tree_diagram_example%
+%         }
+%         \caption{%
+%           Exemple d'arbre de défaillance%
+%           ~\cite{fiateq-fault-tree-analysis}%
+%         }
+%       \end{figure}
+%     \end{column}
+%     \begin{column}{0.49\textwidth}
+%       \centering
+%       \begin{figure}
+%         \includegraphics[width=0.7\textwidth]{%
+%           figures/asil_definition_matrix_example%
+%         }
+%         \caption{%
+%           Matrice de Définition des Niveaux d'\glsname{ASIL}
+%           \textendash{} ISO~26262~(2011)%
+%           ~\cite[10]{loche-hal-01765190}%
+%         }
+%       \end{figure}
+%     \end{column}
+%   \end{columns}
+%   \alert{Conclusion}
+
+%   Impossibilité de prendre en compte le \gls{VA}.
+
+%   Exhaustivité impossible à atteindre.
+
+%   Inadaptée à l'objectif du \gls{SOTIF}.
+
+% \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}{%
+%   % Disable link color locally.
+%   % See:
+%   % https://tex.stackexchange.com/a/88416
+%   {%
+%     \hypersetup{hidelinks}
+%     Utilisation des ontologies \gls{OWL}%
+%   }%
+% }
+
+  \alert{Utilisation des ontologies pour la génération de scénarios}
+
+  Utilisation des ontologies \gls{OWL} pour définir des éléments représentatifs de l'environnement du \gls{VA}.
+
+  Création d'un graphe de dépendance
+  entre les éléments de l'ontologie
+  afin d'établir des relations additionnelles
+  notamment des relations probabilistes et mathématiques.
+
+  \alert{Conclusion}
+
+  Gestion difficile du graphe complexe
+  associée à une ontologie riche et détaillée.
+
+  Impossibilité de maîtriser la génération
+  de scénarios redondants ou superflus.
+
+  \framebreak{}
+
+% \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}[allowframebreaks]{Modèle comportemental}
+%   \alert{Propagation des défaillances}
+%   \medskip
+
+  \alert{Modèle comportemental}
+
+  Application d'une méthode de modélisation comportementale
+  en utilisant AltaRica.
+
+  \citeauthor{tlig-2018-autonomous}
+  \citetitle{tlig-2018-autonomous},
+  \citeyear{tlig-2018-autonomous}
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.47\textwidth]{%
+      figures/altarica_proposed_model_overview%
+    }
+    \caption{%
+      \label{fig-altarica-proposed-model-overview}%
+      Proposed model overview~\cite[2]{tlig-2018-autonomous}%
+    }
+  \end{figure}
+  \note{%
+    Note de Romain :
+
+    le but du stage de Romain était de construire
+    un modèle dynamique en AltaRica en intégrant
+    des boucles à la modélisation,
+    et donc de prendre en compte l'aspect dynamique
+    (on donne les consignes de sortie du \gls{TJC}
+    en entrée des paramètres du modèle).
+
+  }
+
+  \alert{Conclusion}
+
+  Problème d'explosion combinatoire liée à la complexité de l'environnement.
+
+  Limitations dans le pouvoir d'expressivité.
+
+  Impossibilité d'automatiser la vérification de
+  la cohérence des concepts.
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[allowframebreaks]{Réalisations}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}[allowframebreaks]{%
+%   Combinaison des ontologies et du modèle comportemental%
+% }
+
+  Définition d'une méthodologie et élaboration d'un workflow
+  pour combiner les avantages des deux formalismes :
+
+  \vspace{1cm}
+
+  \begin{figure}[htb]
+    \centering
+    \begin{large}
+      % désactivation de la prise en compte du point d'exclamation
+      % et des deux points comme caractères spéciaux par babel
+      % Sinon le calcul des milieux buggue : ((a)!0.5!(b)) plante
+      % voir la documentation de pgf pour la syntaxe
+      % (The Syntax of Partway Modifiers)
+      % et http://www.latex-community.org/forum/viewtopic.php?f=45&p=46180
+      % pour le référencement du bug
+      %\shorthandoff{:}\shorthandoff{!}
+      \begin{tikzpicture}
+        \input{figures/dynamic_environment_workflow_schema.tex}
+      \end{tikzpicture}
+      % réactivation de la prise en compte du point d'exclamation
+      % et des deux points comme caractères spéciaux par babel
+      %\shorthandon{:}\shorthandon{!}
+      % \caption[Découpage d'une séquence d'ordre \num{7}]{%
+      % \label{fig-seqence-cut-schema}%
+      % Découpage d'une séquence d'ordre \num{7}%
+      % }
+    \end{large}
+  \end{figure}
+
+  \alert{Conclusion}
+
+  Contournement de l'explosion combinatoire.
+
+  Tri des séquences générées en classes
+  et vérification que plusieurs scénarios couvrent ou non
+  des situations différentes.
+
+  Exploration possible des situations dangereuses \emph{inconnues}
+  % du \gls{SOTIF}
+  à l'aide des raisonneurs associés aux ontologies.
+
+  Ce stage d'ingénieur a permis la soumission d'un article
+  au congrès \( \lambda \mu 22 \)%
+  \footnote{\url{https://www.imdr.eu/818_p_51436/le-congres-lambda-mu.html}.},
+  organisé par l'Institut pour la Maîtrise des Risques,
+  qui se tiendra du \num{12} au \num{15} octobre \num{2020}.
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Motivations pour le sujet de thèse}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Motivations pour le sujet de thèse}
+  Il semble que le langage \gls{OWL} ne permette pas
+  de définir des nouveaux types par induction.
+
+  Il apparaissait difficile de démontrer la cohérence des concepts eux-mêmes
+  s'il n'est pas possible,
+  d'associer un type défini inductivement à une classe.
+
+  Motivations :
+  %
+  \begin{itemize}
+    \item
+      confirmation de mon intuition initiale ;
+    \item
+      approfondissement des connaissances
+      sur la théorie de la démonstration et les systèmes de preuves ;
+    \item
+      réorientation professionnelle dans le domaine de la preuve.
+  \end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[standout]
+  Merci de votre attention !
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section{Varia}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Acronymes et glossaire}
+\begin{frame}[allowframebreaks]{Acronymes et glossaire}
+  \printglossary[style=listgroup, type=\acronymtype]
+  \printglossary[style=listgroup, type=main]
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Bibliographie}
+\begin{frame}{Bibliographie}
+  \setbeamertemplate{bibliography item}[triangle]
+
+  % Add bibliography in table of contents using biblatex macro.
+  % Comment this when using beamer.
+  % This is delegated to beamer using \section macro.
+  % This way the entry is nicely processed.
+  %
+  % \printbibheading[<key=value, ...>]
+  % This command prints a bibliography heading defined with \defbibheading.
+  % It takes one optional argument, which is a list of options given
+  % in <key>=<value> notation.
+  % The options are a small subset of those supported by \printbibliography.
+  % Valid options are heading and title.
+  % By default, this command uses the heading bibliography.
+  % See § 3.7.7 for details.
+  % Also see §§ 3.13.3 and 3.13.4 for usage examples.
+  % See biblatex documentation file biblatex.pdf,
+  % 3.12, 2018/10/30, section 3.7.2, page 86.
+  %\printbibheading[heading=bibintoc]
+
+  % Define a specific filter for biblatex to merge online and video types.
+  % See: https://tex.stackexchange.com/questions/112874/
+  % sectioning-bibliography-by-type-with-multiple-types-per-section.
+  %
+  % \defbibfilter{<name>}{<expression>}
+  % Defines the custom bibliography filter <name>,
+  % to be used via the filter option of \printbibliography.
+  % The <expression> is a complex test based on the logical operators
+  % and, or, not, the group separator (...).
+  % See biblatex documentation file biblatex.pdf,
+  % 3.12, 2018/10/30, section 3.7.9, page 92.
+  \defbibfilter{online-and-videos}{%
+    type=online or type=video
+  }
+
+  % Add printed references bibliography.
+  %
+  % \printbibliography[<key=value, ...>]
+  % This command prints the bibliography.
+  % It takes one optional argument,
+  % which is a list of options given in <key>=<value> notation.
+  % See biblatex documentation file biblatex.pdf,
+  % 3.12, 2018/10/30, section 3.7.2, page 83.
+  \printbibliography[
+    nottype=online,
+    nottype=video,
+    heading=subbibliography,
+    title={Références imprimées}
+  ]{}
+
+  % Add online references bibliography.
+  %
+  % \printbibliography[<key=value, ...>]
+  % This command prints the bibliography.
+  % It takes one optional argument,
+  % which is a list of options given in <key>=<value> notation.
+  % See biblatex documentation file biblatex.pdf,
+  % 3.12, 2018/10/30, section 3.7.2, page 83.
+  \printbibliography[
+    filter=online-and-videos,
+    heading=subbibliography,
+    title={Webographie}
+  ]{}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document ending.
+\end{document}

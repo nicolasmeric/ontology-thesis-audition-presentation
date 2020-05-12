@@ -1,0 +1,32 @@
+\coordinate (origin) at (0,0);
+\node [circle, draw] (ontology) at (origin) {Ontologie};
+\node [circle, draw, align=center] (behavior_model) at ([xshift=8cm] ontology)
+{Modèle\\ AltaRica modifié};
+\path [
+  draw,
+  arrows=-{Stealth},
+  postaction={
+    decorate,
+    decoration={
+      raise=1ex,
+      text along path,
+      text align=center,
+      text={Transfert des informations}
+    }
+  }
+] (ontology.north east) to[bend left] (behavior_model.north west);
+
+\path [
+  draw,
+  arrows={Stealth}-,
+  postaction={
+    decorate,
+    decoration={
+      raise=1ex,
+      text along path,
+      text align=center,
+      text={Transfert de l'état global du système}
+    }
+  }
+] (ontology.south east) to[bend right] (behavior_model.south west);
+

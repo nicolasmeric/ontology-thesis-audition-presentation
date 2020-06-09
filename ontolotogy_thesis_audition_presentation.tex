@@ -254,6 +254,19 @@
   %\usepackage{ebgaramond}
 \fi
 
+% The LaTeX package textgreek provides
+% NFSS text symbols for Greek letters.
+% This way the author can use Greek letters in text
+% without changing to math mode.
+% The usual font selection commands—e.g. \textbf—apply to
+% these Greek letters as to usual text
+% and the font is upright in an upright environment.
+% Further, hyperref can use
+% these symbols in PDF-strings such as PDF-bookmarks.
+% See textgreek documentation file textgreek.pdf,
+% v 0.7 , 2011/10/09, Abstract, page 1.
+\usepackage{textgreek}
+
 % babel-french has been designed to take advantage of the xspace package
 % if present: adding \usepackage{xspace} in the preamble will force macros
 % like \fg, \ier, \ieme, \dots,..., to respect the spaces you type after them,
@@ -1480,7 +1493,7 @@ access to formal knowledge%
   à l'aide des raisonneurs associés aux ontologies.
 
   Soumission d'un article
-  au congrès \( \lambda \mu 22 \)%
+  au congrès \textlambda{}\textmu{}22%
   \footnote{\url{https://www.imdr.eu/818_p_51436/le-congres-lambda-mu.html}.},
   organisé par l'Institut pour la Maîtrise des Risques,
   qui se tiendra du \num{12} au \num{15} octobre \num{2020}.

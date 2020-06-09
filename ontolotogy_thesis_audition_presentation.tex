@@ -1242,18 +1242,40 @@ access to formal knowledge%
     %   mémoire sur la sécurisation
     %   du contrôle d'accès et des échanges informatiques
     %   au sein de la mairie de Fontenay-sous-Bois, non soutenu ;
-    \item
-      DUT informatique, option génie informatique
-      \textemdash{} Contrat CIF (2007 \textendash{} 2008) ;
+    % \item
+    %   DUT informatique, option génie informatique
+    %   \textemdash{} Contrat CIF (2007 \textendash{} 2008) ;
     \item
       cursus d'ingénieur, Spécialité informatique,
       Parcours Informatique, réseaux, systèmes et multimédia
-      \textemdash{} Cours du soir au Cnam (2009 \textendash{} 2012) ;
+      \textemdash{} Cours du soir au Cnam (2009 \textendash{} 2013) ;
     \item
-      ingénieur DevOps à l'\gls{IRT} SystemX (depuis 2014);
+      suspension du parcours d'ingénieur pour des raisons personnelles
+      (2014 \textemdash{} 2017) ;
+    \item
+      ingénieur DevOps à l'\gls{IRT} SystemX (depuis 2014) ;
+    \item
+      travaux d'ingénierie à l'\gls{IRT}
+      autour des systèmes de preuves avec Burkhart \bsc{Wolff}
+      et volonté de donner un cadre scientifique et théorique à ces travaux ;
+    \item
+      suivi du cours \enquote{Preuves Interactives et Applications}
+      de Burkhart \bsc{Wolff} en candidat libre ;
     \item
       reprise et achèvement du cursus d'ingénieur au Cnam
       (2018 \textendash{} 2020) ;
+    \item
+      quelques UE :
+      \begin{itemize}
+        % \item
+        % RSX112 \textendash{} Sécurité des réseaux \textendash{} Note : 20,
+        \item
+          NFP108 \textendash{} Méthodologies des systèmes d'information
+          \textendash{} Note : 15.5,
+        \item
+          NFP119 \textendash{} Programmation fonctionnelle :
+          conception et analyse \textendash{} Note : 18 ;
+      \end{itemize}
     % \item
     %   découverte du monde de la recherche à l'\gls{IRT} SystemX ;
     % \item
@@ -1263,7 +1285,7 @@ access to formal knowledge%
       \enquote{%
         les modélisations comportementale et sémantique pour
         la sûreté de fonctionnement des systèmes autonomes critiques%
-      }.
+      } \textendash{} Note  : 16.
   \end{itemize}
 \end{frame}
 
@@ -1272,24 +1294,24 @@ access to formal knowledge%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Proposition de stage}
-  Où :
+  \alert{Où}
 
-  au sein d'une tâche du projet \glsfirst{SVA}
+  Au sein d'une tâche du projet \glsfirst{SVA}
   qui vise à définir des méthodologies et des outils
   pour la validation des systèmes de véhicules autonomes.
 
-  \medskip
+  % \medskip
 
-  Objectif :
+  \alert{Objectif}
 
   Étudier la pertinence des logiques de description
   (ontologies)
   et leur potentielle utilisation dans la définition des concepts
   de sûreté de fonctionnement.
 
-  \medskip
+  % \medskip
 
-  Idée :
+  \alert{Idée}
 
   Orienter la génération de scénarios
   et identifier leurs classes
@@ -1402,24 +1424,28 @@ access to formal knowledge%
   \alert{Modèle comportemental}
 
   Application d'une méthode de modélisation comportementale
-  en utilisant AltaRica.
+  en utilisant AltaRica~\cite{tlig-2018-autonomous}.
+  % \citeauthor{tlig-2018-autonomous}
+  % \citetitle{tlig-2018-autonomous},
+  % \citeyear{tlig-2018-autonomous}
 
-  \citeauthor{tlig-2018-autonomous}
-  \citetitle{tlig-2018-autonomous},
-  \citeyear{tlig-2018-autonomous}
+  Définition de la logique de conduite
+  et de l'environnement du \gls{VA} dans un modèle.
 
-  \framebreak{}
+  Calcul des séquences d'événements aboutissant à une situation dangereuse.
 
-  \begin{figure}
-    \centering
-    \includegraphics[width=0.75\textwidth]{%
-      figures/altarica_proposed_model_overview%
-    }
-    \caption{%
-      \label{fig-altarica-proposed-model-overview}%
-      Proposed model overview~\cite[2]{tlig-2018-autonomous}%
-    }
-  \end{figure}
+  % \framebreak{}
+
+  % \begin{figure}
+  %   \centering
+  %   \includegraphics[width=0.75\textwidth]{%
+  %     figures/altarica_proposed_model_overview%
+  %   }
+  %   \caption{%
+  %     \label{fig-altarica-proposed-model-overview}%
+  %     Proposed model overview~\cite[2]{tlig-2018-autonomous}%
+  %   }
+  % \end{figure}
   \note{%
     Note de Romain :
 
@@ -1522,6 +1548,15 @@ access to formal knowledge%
     % \item
     %   confirmation de mon intuition initiale ;
     \item
+      travaux du stage d'ingénieur déjà expérimentés
+      par Idir \bsc{Aït Sadoune} en utilisant une autre méthode formelle,
+      la méthode B~\cite{DBLP:conf/medi/Ait-SadouneM19} ;
+    \item
+      travaux de Burkhart \bsc{Wolff}
+      dans le domaine des ontologies%
+      ~\cites{BruckerWolff.Design-SEFM19}{Brucker-ea.Using-CICM18} :
+      un cadre intéressant pour mes réflexions ;
+    \item
       modéliser des concepts par des concepts plus puissants dans HOL
      (définitions inductives, fonctions récursives) ;
     \item
@@ -1531,8 +1566,8 @@ access to formal knowledge%
       approfondissement des connaissances
       sur la théorie de la démonstration et les systèmes de preuves ;
     \item
-      réorientation professionnelle
-      dans le domaine des méthodes formelles et de vérification par la preuve.
+      réorientation professionnelle :
+      domaine prometteur (l'utilisation se généralise dans l'industrie).
   \end{itemize}
 
 \end{frame}
@@ -1546,16 +1581,9 @@ access to formal knowledge%
 % \section{Varia}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Acronymes et glossaire}
-\begin{frame}[allowframebreaks]{Acronymes et glossaire}
-  \printglossary[style=listgroup, type=\acronymtype]
-  \printglossary[style=listgroup, type=main]
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Bibliographie}
-\begin{frame}{Bibliographie}
-  \setbeamertemplate{bibliography item}[triangle]
+\begin{frame}[allowframebreaks]{Bibliographie}
+  \setbeamertemplate{bibliography item}[text]
 
   % Add bibliography in table of contents using biblatex macro.
   % Comment this when using beamer.
@@ -1618,6 +1646,13 @@ access to formal knowledge%
     heading=subbibliography,
     title={Webographie}
   ]{}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Acronymes et glossaire}
+\begin{frame}[allowframebreaks]{Acronymes et glossaire}
+  \printglossary[style=listgroup, type=\acronymtype]
+  \printglossary[style=listgroup, type=main]
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
